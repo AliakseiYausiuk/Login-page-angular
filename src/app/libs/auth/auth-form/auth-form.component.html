@@ -1,0 +1,34 @@
+<form class="form" [formGroup]="form">
+
+  <L-input
+    formControlName="email"
+    type="email"
+    placeholder="alex@email.com"
+    icon="/assets/images/svg/letter-white_20x18.svg"
+  >
+    Email Address
+  </L-input>
+
+  <L-input
+    formControlName="password"
+    type="password"
+    placeholder="Enter your password"
+    icon="/assets/images/svg/padlock-white_18x20.svg"
+  >
+    Password
+  </L-input>
+
+  <div class="form-wrapper-link">
+    <a class="form-link" href="#">Forgot Password?</a>
+  </div>
+
+  <div class="wrapper-btn">
+    <L-btn>Login Now</L-btn>
+    <div class="separator-wrapper">
+      <div class='separator'></div>
+      <span>OR</span>
+      <div class='separator'></div>
+    </div>
+    <L-btn classStyle="btn-outline">Signup Now</L-btn>
+  </div>
+</form>
