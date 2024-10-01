@@ -1,0 +1,37 @@
+:host {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  height: 100%;
+}
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: var(--white-color);
+  padding: 0 35px;
+
+  .logo {
+    height: 50px;
+  }
+
+  .subtitle {
+    height: 50px;
+  }
+
+}
+
+.content {
+  display: grid;
+  place-items: center;
+  background: var(--light-gray-color);
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+}
+
+
+
