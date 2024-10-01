@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {BtnComponent} from "../../component-ui/components/btn/btn.component";
 import {InputComponent} from "../../component-ui/components/input/input.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -21,10 +21,13 @@ export class AuthFormComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
 
+  @Output() error = new EventEmitter<boolean>();
+
   form = new FormGroup({
     email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
     password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
   })
+
 
   ngOnInit(): void {
     this.form.markAllAsTouched()
@@ -36,5 +39,10 @@ export class AuthFormComponent implements OnInit {
       this.authService.login(this.form.value)
       this.router.navigate([''])
     }
+
+    if (this.form.invalid) {
+      this.error.emit(true);
+    }
   }
+
 }
