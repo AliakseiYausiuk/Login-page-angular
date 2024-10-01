@@ -9,4 +9,5 @@ import {Component, input} from '@angular/core';
 })
 export class BtnComponent {
   classStyle = input<'btn' | 'btn-outline'>('btn')
+  type = input<'button' | 'submit' | 'reset'>('submit')
 }
