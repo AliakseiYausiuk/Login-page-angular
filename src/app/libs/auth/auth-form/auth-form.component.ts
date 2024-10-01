@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {BtnComponent} from "../../component-ui/components/btn/btn.component";
 import {InputComponent} from "../../component-ui/components/input/input.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {AuthService} from "../data/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'L-auth-form',
@@ -16,13 +18,23 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 })
 export class AuthFormComponent implements OnInit {
 
+  authService = inject(AuthService);
+  router = inject(Router);
+
   form = new FormGroup({
-    name: new FormControl<string | null>(null, Validators.required),
-    email: new FormControl<string | null>(null, Validators.required),
-    password: new FormControl<number | null>(null, [Validators.required, Validators.minLength(6)]),
+    email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
+    password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
   })
 
   ngOnInit(): void {
     this.form.markAllAsTouched()
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      // @ts-ignore
+      this.authService.login(this.form.value)
+      this.router.navigate([''])
+    }
   }
 }
