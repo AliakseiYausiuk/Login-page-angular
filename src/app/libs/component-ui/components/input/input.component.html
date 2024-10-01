@@ -1,0 +1,17 @@
+<label class="label">
+  <ng-content/>
+  <div class="wrapper">
+    <div class="container">
+      <img [src]="icon()" alt="Icon" class="icon">
+    </div>
+    <input
+      [ngModel]="value"
+      (ngModelChange)="onModelChange($event)"
+      class="input"
+      [type]="type()"
+      [placeholder]="placeholder()"
+      (blur)="onTouched"
+    />
+  </div>
+</label>
+
