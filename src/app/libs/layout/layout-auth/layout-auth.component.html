@@ -1,9 +1,12 @@
 <section class="auth">
+  @if (isError) {
+    <L-error-message class="mb-20"/>
+  }
   <div class="logo">
     <img src="/assets/images/svg/logo-small_182x60.svg" alt="Logo">
   </div>
   <h2 class="subtitle">Login into your account</h2>
-  <L-auth-form></L-auth-form>
+  <L-auth-form (error)="onError($event)"></L-auth-form>
 </section>
 
 <section class="content">
